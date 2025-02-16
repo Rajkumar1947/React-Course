@@ -1,0 +1,11 @@
+{
+  "name": "react-course",
+  "version": "1.0.0",
+  "description": "This is react learning",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Raj",
+  "license": "ISC"
+}

@@ -4,9 +4,8 @@
   "description": "This is react learning",
   "scripts": {
     "test": "jest",
-    "start": "npm start",
-    "build-local": "npx parcel index.html",
-    "build-prod": "npx parcel build index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "Raj",
   "license": "ISC",

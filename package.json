@@ -2,13 +2,23 @@
   "name": "react-course",
   "version": "1.0.0",
   "description": "This is react learning",
-  "main": "App.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "npm start",
+    "build-local": "npx parcel index.html",
+    "build-prod": "npx parcel build index.html"
   },
   "author": "Raj",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.13.3" 
-  }
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserlist": [ 
+    "last 2 versions "
+  ]
 }

@@ -7,6 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./src/pages/About";
 import Contact from "./src/pages/Contact";
+import Footer from "./src/component/Footer/Footer";
+import ErrorPage from "./src/pages/Error";
+import { Outlet } from "react-router-dom";
+import Menu from "./src/pages/Menu";
 
 // JSX is HTML like syntax not HTML
 /**
@@ -32,7 +36,9 @@ const AppContainer = () => {
     <div className="app">
       {/* <Home /> */}
       <Header />
-      <Body />
+      <Outlet />
+      {/* <Body /> */}
+      <Footer />
     </div>
   );
 };
@@ -41,14 +47,25 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppContainer />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <Menu />,
+      },
+    ],
+    errorElement: <ErrorPage />,
   },
 ]);
 

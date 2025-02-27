@@ -1,0 +1,78 @@
+.menu-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .restaurant-name {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .cuisine {
+    color: gray;
+    margin-bottom: 5px;
+  }
+  
+  .cost {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .menu-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+  }
+  
+  .menu-content {
+    flex: 1;
+  }
+  
+  .price {
+    font-size: 1.2rem;
+    color: green;
+    font-weight: bold;
+  }
+  
+  .menu-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .toggle-btn, .add-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .toggle-btn {
+    background: none;
+    font-size: 18px;
+  }
+  
+  .add-btn {
+    background: #ff6600;
+    color: white;
+  }
+  

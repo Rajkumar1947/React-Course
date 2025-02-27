@@ -7,17 +7,13 @@ export default RestaurentCart = (props) => {
   const { id, name, avgRating, cuisines, costForTwo, cloudinaryImageId } = info;
 
   return (
-    <div className="res-card">
+    <div className="restaurant-card">
       <Link to={"/restaurant/" + id}>
-        <img
-          src={IMAGE_BASE_URL + cloudinaryImageId}
-          alt="res-logo"
-          className="res-logo"
-        />
+        <img src={IMAGE_BASE_URL + cloudinaryImageId} alt="res-logo" />
         <h3>{name}</h3>
-        <h4>{cuisines}</h4>
-        <h4>{avgRating} Stars</h4>
-        <h4>{costForTwo} minues</h4>
+        <p>{cuisines.join(",")}</p>
+        <p class="rating">⭐ {avgRating} Stars</p>
+        <p class="price">{costForTwo}</p>
       </Link>
     </div>
   );

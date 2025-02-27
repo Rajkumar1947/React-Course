@@ -32,10 +32,9 @@ export default Body = () => {
 
   return (
     <div className="body">
-      <div className="filter">
+      <div className="search-container">
         <input
           type="text"
-          className="search-text"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
@@ -54,7 +53,7 @@ export default Body = () => {
           Search
         </button>
         <button
-          className="filter-btm"
+          className="filter-btn"
           onClick={() => {
             const filterData = restaurents.filter(
               (res) => res.info.avgRaiting > 4
@@ -65,7 +64,7 @@ export default Body = () => {
           Fiter Top Restarents
         </button>
       </div>
-      <div className="restaurent-container">
+      <div className="restaurant-list">
         {filterData.map((restaurent) => (
           <Restaurent key={restaurent.info.id} data={restaurent} />
         ))}

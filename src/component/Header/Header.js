@@ -1,25 +1,20 @@
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../../utils/useOnlineStatus";
+
 export default Header = () => {
+  const onlineStatus = useOnlineStatus();
   return (
-    <div className="header">
-      <div children="logo">
+    <header>
+      <div className="logo">
         <Logo />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
+      <nav>
+          <Link to="/">🏠</Link>
             <Link to="/about">About</Link>
-          </li>
-          <li>
             <Link to="/contact">Contact Us</Link>
-          </li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
+        🛒
+        </nav>
+      </header>
   );
 };

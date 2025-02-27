@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./src/component/Header/Header";
 import Body from "./src/component/Body/Body";
@@ -10,7 +10,7 @@ import Contact from "./src/pages/Contact";
 import Footer from "./src/component/Footer/Footer";
 import ErrorPage from "./src/pages/Error";
 import { Outlet } from "react-router-dom";
-import Menu from "./src/pages/Menu";
+// import Menu from "./src/pages/Menu";
 
 // JSX is HTML like syntax not HTML
 /**
@@ -30,6 +30,8 @@ import Menu from "./src/pages/Menu";
  */
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const Menu = lazy(() => import("./src/pages/Menu"));
 
 const AppContainer = () => {
   return (
@@ -62,7 +64,12 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurant/:resId",
-        element: <Menu />,
+        element: (
+          <Suspense fallback="<h1> Loadding...</h1>">
+            {" "}
+            <Menu />{" "}
+          </Suspense>
+        ),
       },
     ],
     errorElement: <ErrorPage />,

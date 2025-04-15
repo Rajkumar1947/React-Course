@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import userRestaurantManu from "../utils/useRestaurantMenu";
 import Shimmer from "../component/Body/Shimmer";
-import { FaPlus, FaMinus } from "react-icons/fa"; // Import icons
+import { IMAGE_BASE_URL } from "../utils/constants";
+import RestaurantCategory from "../component/Body/RestaurantCategory";
 
 const Menu = () => {
   const { resId } = useParams();
   const resInfo = userRestaurantManu(resId);
+  const [showIndex, setShowIndex] = useState(0);
 
   // ✅ Show shimmer while loading data
   if (!resInfo) {
@@ -19,51 +21,40 @@ const Menu = () => {
     resInfo?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]
       ?.card?.card?.itemCards;
 
+  const categories =
+    resInfo?.data?.cards?.[4]?.groupedCard?.cardGroupMap.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  console.log("categories", categories);
   if (!restaurantInfo) {
     return <p>No restaurant data available.</p>;
   }
 
-  const { name, cuisines, costForTwoMessage } = restaurantInfo;
-
+  const { name, cuisines, costForTwoMessage, cloudinaryImageId } =
+    restaurantInfo;
   return (
-    <div className="menu-container">
-      <h1 className="restaurant-name">{name}</h1>
-      <h2 className="cuisine">{cuisines?.join(", ")}</h2>
-      <p className="cost">{costForTwoMessage}</p>
+    <div className="text-center">
+      {/* <div className=" bg-gray-100 m-4 p-4 rounded-md shadow-md"> */}
+      <h1 className="my-10 text-2xl font-bold">{name}</h1>
+      <h2 className="text-2xl m-5 font-bold">{cuisines?.join(", ")}</h2>
 
-      <div className="menu-list">
+      {categories.map((category, index) => (
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+          showItems={showIndex === index ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+        />
+      ))}
+      {/* <p className="cost">{costForTwoMessage}</p> */}
+      {/* </div> */}
+      {/* <div className="flex flex-wrap w-full justify-between bg-gray-100 m-4 p-4 rounded-md shadow-md">
         {menuItems.map((menu) => (
           <MenuItem key={menu.card.info.id} item={menu.card.info} />
         ))}
-      </div>
-    </div>
-  );
-};
-
-// ✅ Menu Item Component with Expand/Collapse Feature
-const MenuItem = ({ item }) => {
-  const [expanded, setExpanded] = useState(false);
-
-  return (
-    <div className="menu-card">
-      <img
-        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/FOOD_CATALOG/IMAGES/CMS/2024/10/1/106f0bf5-0dcd-4c0e-999f-45ecbb3256b0_b8088cbc-c882-430c-9999-437f22ff2062.JPG"
-        alt={item.name}
-        className="menu-img"
-      />
-
-      <div className="menu-content">
-        <h3>{item.name}</h3>
-        <p className="price">₹{item.price}</p>
-
-        {expanded && (
-          <p className="description">Delicious {item.name} available now!</p>
-        )}
-
-        <div className="menu-actions">
-          <button className="add-btn">Add</button>
-        </div>
-      </div>
+      </div> */}
     </div>
   );
 };

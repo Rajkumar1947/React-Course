@@ -1,15 +1,18 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./src/component/Header/Header";
 import Body from "./src/component/Body/Body";
-import Home from "./src/component/Extra/Home";
-import { BrowserRouter } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./src/pages/About";
 import Contact from "./src/pages/Contact";
+import Cart from "./src/pages/Cart";
 import Footer from "./src/component/Footer/Footer";
 import ErrorPage from "./src/pages/Error";
 import { Outlet } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import UserContext from "./src/utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./src/utils/store/appStore";
 // import Menu from "./src/pages/Menu";
 
 // JSX is HTML like syntax not HTML
@@ -29,19 +32,35 @@ import { Outlet } from "react-router-dom";
  *
  */
 
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const Menu = lazy(() => import("./src/pages/Menu"));
 
 const AppContainer = () => {
+  const [userName, setUserName] = useState(null);
+
+  useEffect(() => {
+    const data = {
+      name: "Raj",
+    };
+    setUserName(data.name);
+  });
   return (
-    <div className="app">
-      {/* <Home /> */}
-      <Header />
-      <Outlet />
-      {/* <Body /> */}
-      <Footer />
-    </div>
+    <Provider store={appStore}>
+      <QueryClientProvider client={queryClient}>
+        <UserContext.Provider value={{ defaultUserName: userName }}>
+          <div className="app">
+            {/* <Home /> */}
+            <Header />
+            <Outlet />
+            {/* <Body /> */}
+            <Footer />
+          </div>
+        </UserContext.Provider>
+      </QueryClientProvider>
+    </Provider>
   );
 };
 
@@ -61,6 +80,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "/restaurant/:resId",

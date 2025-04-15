@@ -1,14 +1,24 @@
 {
-  "name": "react-course",
+  "name": "namaste-react",
   "version": "1.0.0",
-  "description": "This is react learning",
+  "description": "This is Namaste React by Akshay Saini",
   "scripts": {
-    "test": "jest",
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "test": "jest",
+    "watch-test": "jest --watch"
   },
-  "author": "Raj",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namastedev/namaste-react.git"
+  },
+  "keywords": [],
+  "author": "Akshay Saini",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/namastedev/namaste-react/issues"
+  },
+  "homepage": "https://github.com/namastedev/namaste-react#readme",
   "devDependencies": {
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
@@ -26,14 +36,14 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "axios": "^1.7.9",
+    "@tanstack/react-query": "^5.69.0",
+    "axios": "^1.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^5.5.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.11.2"
   },
-  "browserlist": [
-    "last 2 versions "
+  "browserslist": [
+    "last 2 versions"
   ]
 }
